@@ -14,7 +14,8 @@ def receive_messages():
         if not new_messages:
             break
         for _, message in new_messages.items():
-            messages.append(message.value)
+            for m in message:
+                messages.append(m.value)
 
     return messages
 
