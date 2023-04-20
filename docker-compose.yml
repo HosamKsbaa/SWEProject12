@@ -19,7 +19,7 @@ services:
 
   app:
     build:
-      context: ./App
+      context: .
     ports:
       - '8000:8000'
     environment:

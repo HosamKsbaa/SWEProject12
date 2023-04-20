@@ -8,12 +8,15 @@ def receive_messages():
     # Get messages from the Kafka topic
     messages = []
 
-    # Receive messages from the Kafka broker for 10 seconds.
-    timeout = 3  # in seconds
-    start_time = time.time()
-    while (time.time() - start_time) < timeout:
+    # Receive messages from the Kafka broker until there are no more messages available.
+    while True:
         new_messages = consumer.poll(timeout_ms=1000)
+        if not new_messages:
+            break
         for _, message in new_messages.items():
-            messages.append(message[0].value)
+            messages.append(message.value)
 
     return messages
+
+
+
