@@ -13,9 +13,9 @@ def receive_messages():
         new_messages = consumer.poll(timeout_ms=1000)
         if not new_messages:
             break
-        for _, message in new_messages.items():
-            for m in message:
-                messages.append(m.value)
+        for _, messages in new_messages.items():
+            for message in messages:
+                messages.append(message.value)
 
     return messages
 
