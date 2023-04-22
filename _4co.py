@@ -1,3 +1,4 @@
+from database  import SessionLocal
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import nltk
 from kafka import KafkaConsumer
@@ -5,8 +6,24 @@ from googletrans import Translator
 from producer import send_message
 from consumer import receive_messages
 import crud 
+import models2
+import datetime
+import sys
+import os
+from fastapi import FastAPI
+from fastapi import Depends, FastAPI, HTTPException
+from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session
+import sqlalchemy
+import crud , database ,schemas
+from database  import engine ,SessionLocal
+from sqlalchemy import create_engine
+import models2
 
+from producer import send_message
+from consumer import receive_messages
 
+models2.Base.metadata.create_all(bind=engine)
 
 # Set up Kafka consumer
 consumer = KafkaConsumer(
@@ -34,5 +51,5 @@ while True:
 
                 # Analyze text
                 scores = analyzer.polarity_scores(text)
-                crud.create_Analize();
+                crud.create_Analize(db= Depends(get_db),Analytics= models2.Analytics(neg= scores['neg'],neu = scores['neu'] ,pos = scores['pos'] , compound  = scores['compound'] ) );
                 print(scores)

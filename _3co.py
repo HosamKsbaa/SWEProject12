@@ -35,20 +35,3 @@ while True:
                     # Write translated text to file
                     print(str(text)+ "\n")
                     file.write(str(text)+ "\n")
-
-
-# Continuously read messages from Kafka topic and translate them
-# while True:
-#     # Wait for new messages
-#     for message in consumer.poll(timeout_ms=1000):
-#         if message is not None:
-#             for msg in message:
-#                 text = msg
-#                 if translator.detect(text).lang != "en":
-#                     # Translate text to English
-#                     text = translator.translate(text, dest='en').text
-#                 with open('englishText2.txt', 'a', encoding='utf-8') as file:
-#                     # Write translated text to file
-#                     print("A7aaaaaaaaaaaaaaaaaaaaaaaa")
-#                     print(text)
-#                     file.write(str(text)+ "\n")
