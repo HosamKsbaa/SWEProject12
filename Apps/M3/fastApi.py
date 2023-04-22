@@ -14,7 +14,17 @@ async def send_message_route(message: str):
     return {'message': f'Message sent to Kafka topic: {message}'}
 
 # Define a route to receive messages from the Kafka topic
-@app.get('/receive-messages')
+@app.get('/receive-Rating')
 async def receive_messages_route():
     messages = receive_messages()
     return {'messages': str(messages)}
+@app.get('/receive-Rating')
+async def receive_messages_route():
+    messages = receive_messages()
+    return {'messages': str(messages)}
+
+@app.get('/res')
+async def receive_messages_route():
+    messages = receive_messages()
+    return {'messages': str(messages)}
+

@@ -1,3 +1,6 @@
 fastapi
 kafka-python
 uvicorn
+googletrans==3.1.0a0
+nltk
+sqlalchemy

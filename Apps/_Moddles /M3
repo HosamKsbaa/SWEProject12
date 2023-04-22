@@ -1,0 +1,19 @@
+class Analytics: 
+  def __init__(self,neg, neu, pos, compound):
+      self.neg = neg
+      self.neu = neu
+      self.pos = pos
+      self.compound = compound
+
+
+  
+  
+class Result:
+  def __init__(self,message, analytics):
+    self.DateTime =DateTime
+    self.message = message
+    self.analytics = analytics
+    
+    
+    # https://drive.google.com/file/d/1rvhnZvNokl_rpahXTM_IN2WNq3Qa6boN/view?usp=sharing
+    
