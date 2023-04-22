@@ -3,6 +3,7 @@ kafka-python
 uvicorn
 googletrans==3.1.0a0
 nltk
+ormar
 sqlalchemy
 asyncpg==0.27.0
 fastapi==0.89.1

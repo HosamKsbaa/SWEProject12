@@ -3,5 +3,8 @@
     "cSpell.words": [
         "ormar",
         "sqlalchemy"
+    ],
+    "python.analysis.extraPaths": [
+        "./Apps/_Common"
     ]
 }
