@@ -6,7 +6,7 @@ consumer = KafkaConsumer('my-topic1', bootstrap_servers='localhost:9092', auto_o
 
 def receive_messages():
     # Get messages from the Kafka topic
-    messages = []
+    messagesList = []
 
     # Receive messages from the Kafka broker until there are no more messages available.
     while True:
@@ -15,9 +15,9 @@ def receive_messages():
             break
         for _, messages in new_messages.items():
             for message in messages:
-                messages.append(message.value)
+                messagesList.append(message.value)
 
-    return messages
+    return messagesList
 
 
 

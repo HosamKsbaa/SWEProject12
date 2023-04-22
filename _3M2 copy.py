@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from producer import send_message
-from consumer import receive_messages
+from Apps.producer import send_message
+from Apps.consumer import receive_messages
 
 # Create a FastAPI app instance
 app = FastAPI()

@@ -6,10 +6,13 @@ from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy.orm import Session
 import sqlalchemy
-import crud , database ,models2 ,schemas
+import crud , database ,schemas
 from database  import engine ,SessionLocal
 from sqlalchemy import create_engine
+import models2
 
+from producer import send_message
+from consumer import receive_messages
 
 # Create a FastAPI app instance
 models2.Base.metadata.create_all(bind=engine)
@@ -26,28 +29,32 @@ def get_db():
 # Define a route to send a message to the Kafka topic
 @app.post('/send-send_message_route2/')
 def send_message_route2( message: schemas.MessageCreate ,db: Session = Depends(get_db)):
-	x=crud.create_Message(db=db, Message=message)
-	return 
+	return crud.create_Message(db=db, Message=message)
 
 
 
 @app.get('/getLastMessage')
-def testGetLastMessage2(db: Session = Depends(get_db)):
+async def testGetLastMessage2(db: Session = Depends(get_db)):
 	# Send the message to the Kafka topic
-	x = crud.getAllMessages(db)
-	return x
+	return crud.getLastMessage(db)
 
 
 @app.get('/getAllMessages')
-def getAllMessages(db: Session = Depends(get_db)):
+async def getAllMessages(db: Session = Depends(get_db)):
 	# Send the message to the Kafka topic
-	x=crud.get_Message(db)
-	return x
-
-@app.get('/getLastMessage')
-def getLastMessage(db: Session = Depends(get_db)):
-    # Get the last message from the database
-    last_message = crud.get_LastMessage(db)
-    return last_message
+	return crud.getAllMessages(db)
 
 
+# Define a route to send a message to the Kafka topic
+@app.post('/send-message/{message}')
+async def send_message_route(message: str):
+    # Send the message to the Kafka topic
+    send_message(message)
+
+    return {'message': f'Message sent to Kafka topic: {message}'}
+
+# Define a route to receive messages from the Kafka topic
+@app.get('/receive-messages')
+async def receive_messages_route():
+    messages = receive_messages()
+    return {'messages': str(messages)}
