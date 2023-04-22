@@ -4,17 +4,16 @@ import os
 from fastapi import FastAPI
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
-
-from ..Utils import crud ,database , models2 ,schemas
-
 from sqlalchemy.orm import Session
-from datetime import date 
-from Utils.database import SessionLocal, engine
-
 import sqlalchemy
-models2.Base.metadata.create_all(bind=engine)
+import crud , database ,models2 ,schemas
+from database  import engine ,SessionLocal
+from sqlalchemy import create_engine
+
 
 # Create a FastAPI app instance
+models2.Base.metadata.create_all(bind=engine)
+
 app = FastAPI()
 
 def get_db():
@@ -27,6 +26,8 @@ def get_db():
 # Define a route to send a message to the Kafka topic
 @app.post('/send-send_message_route2/',response_model=schemas.Message)
 def send_message_route2( message: schemas.MessageCreate ,db: Session = Depends(get_db)):
+
+
     return crud.create_Message(db=db, Message=message)
 
 
@@ -44,7 +45,6 @@ async def testGetMessages(db: Session = Depends(get_db)):
 
 import os
 
+import sys
+sys.path.append("..")
 
-os.chdir("..")
-current_directory = os.getcwd()
-print(current_directory)
