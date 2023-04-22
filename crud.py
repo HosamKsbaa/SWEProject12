@@ -21,14 +21,13 @@ def create_Message(db: Session, Message: schemas.MessageCreate):
 
     return  db_message
 
-def create_Analize(db: Session, Message: schemas.MessageCreate):
-    db_message = models2.Messages(text=Message.message,DateTime=date.today(),)
-    db.add( db_message)
+def create_Analize(db: Session, Analytics:  models2.Analytics):
+    db_Analytics = Analytics
+    db.add( db_Analytics)
     db.commit()
-    db.refresh( db_message)
+    db.refresh( db_Analytics)
     # send_message(message)
-
-    return  db_message
+    return  db_Analytics
 
 # def create_Message2(db: Session, Message: schemas.MessageCreate):
 #     db_message = models2.Messages(text=Message.message,DateTime=date.today(),)

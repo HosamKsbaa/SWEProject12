@@ -1,11 +1,10 @@
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import nltk
 from kafka import KafkaConsumer
-import googletrans
 from googletrans import Translator
 from producer import send_message
 from consumer import receive_messages
-
+import crud 
 
 
 
@@ -30,4 +29,5 @@ while True:
 
                 # Analyze text
                 scores = analyzer.polarity_scores(text)
+                crud.create_Analize();
                 print(scores)
