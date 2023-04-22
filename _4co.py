@@ -1,11 +1,8 @@
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import nltk
-nltk.download('vader_lexicon')
-
 from kafka import KafkaConsumer
 import googletrans
 from googletrans import Translator
-
 from producer import send_message
 from consumer import receive_messages
 

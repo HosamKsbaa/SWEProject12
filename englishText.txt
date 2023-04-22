@@ -32,3 +32,11 @@ my-topic
 0
 my-topic
 0
+my-topic
+0
+my-topic
+0
+my-topic
+0
+my-topic
+0

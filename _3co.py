@@ -2,6 +2,11 @@ from kafka import KafkaConsumer
 import googletrans
 from googletrans import Translator
 
+from producer import send_message
+from consumer import receive_messages
+
+
+
 translator = Translator()
 
 # Set up Kafka consumer
@@ -24,6 +29,8 @@ while True:
                     text = text.decode('utf-8')
                     # Translate text to English
                     text = translator.translate(text, dest='en').text
+                    
+                send_message(text,Topic= "translated")
                 with open('englishText2.txt', 'a', encoding='utf-8') as file:
                     # Write translated text to file
                     print(str(text)+ "\n")
