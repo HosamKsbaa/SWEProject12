@@ -1,4 +1,8 @@
 from pydantic import BaseModel
+from typing import Optional
+
+from pydantic import BaseModel, Field
+import uuid
 
 class AnalyticsBase(BaseModel): 
         neg   : int 
@@ -16,16 +20,19 @@ class Analytics(AnalyticsBase):
 
 #https://fastapi.tiangolo.com/tutorial/sql-databases/#create-the-relationships
   
-  
+
 class MessageBase(BaseModel):
-        UserId  : int 
-        DateTime  : int
-        message  : int 
-        analytics  : AnalyticsBase 
+        # UserId  : int 
+        # DateTime  : int
+        message  : Optional[str] 
+
+class MessageCreate(MessageBase): 
+        pass
 
 
 class Message(MessageBase):
-    id: int
-    analytics :int
-    class Config:
-            orm_mode = True
+        id: int = Field(default_factory=lambda: uuid.uuid4().int)
+        analytics : Optional[int]
+
+        class Config:
+                orm_mode = True

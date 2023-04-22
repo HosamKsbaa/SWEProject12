@@ -24,6 +24,8 @@ class MessageBase(BaseModel):
         analytics  : AnalyticsBase 
 
 
+class MessageCreate(MessageBase):
+        pass
 class Message(MessageBase):
     id: int
     analytics :int

@@ -4,7 +4,7 @@ import ormar
 import sqlalchemy
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Float, DateTime
 from sqlalchemy.orm import relationship
-from .database import Base
+from database import Base
 
 
 
@@ -28,6 +28,6 @@ class Messages(Base):
   MessageId = Column(Integer, primary_key=True, index=True)
   DateTime = Column(DateTime)
   text = Column(String)
-  analytics = Column(Integer, ForeignKey("Analytics.AnalyticsId"))
+  analytics = Column(Integer, ForeignKey("Analytics.AnalyticsId"), nullable=True)
     # https://drive.google.com/file/d/1rvhnZvNokl_rpahXTM_IN2WNq3Qa6boN/view?usp=sharing
     
