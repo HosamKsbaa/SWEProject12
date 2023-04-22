@@ -15,7 +15,12 @@ consumer = KafkaConsumer(
     # group_id='my-group'
 )
 
-
+def get_db():
+	db = SessionLocal()
+	try:
+		yield db
+	finally:
+		db.close()
 
 # Receive messages from the Kafka broker until there are no more messages available.
 while True:
