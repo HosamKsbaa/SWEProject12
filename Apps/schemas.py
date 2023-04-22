@@ -5,11 +5,11 @@ from pydantic import BaseModel, Field
 import uuid
 
 class AnalyticsBase(BaseModel): 
-        neg   : int 
-        neu  : int 
-        pos  : int 
-        compound : int 
-        
+    neg   : int 
+    neu  : int 
+    pos  : int 
+    compound : int 
+
 class AnalyticCreate(AnalyticsBase): 
     pass
 class Analytics(AnalyticsBase): 

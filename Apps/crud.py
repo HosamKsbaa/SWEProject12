@@ -5,10 +5,15 @@ import models2, schemas
 
 
 def get_Message(db: Session):
-    return db.query(models2.Messages).first()
+    return db.query(models2.Messages).offset(1).limit(50).all()
 
-def get_all_Messages(db: Session):
-    return db.query(models2.Messages).all()
+def getAllMessages(db: Session):
+    messages = db.query(models2.Messages).all()
+    return messages
+
+def getLastMessage(db: Session):
+    last_message = db.query(models2.Messages).order_by(models2.Messages.id.desc()).first()
+    return last_message
 
 def create_Message(db: Session, Message: schemas.MessageCreate):
     db_message = models2.Messages(text=Message.message,DateTime=date.today(),)
