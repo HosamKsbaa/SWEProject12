@@ -5,4 +5,4 @@ producer = KafkaProducer(bootstrap_servers='localhost:9092', value_serializer=la
 
 def send_message(message: str):
     # Send the message to the Kafka topic
-    producer.send('my-topic1', value=message)
+    producer.send('my-topic', value=message)
