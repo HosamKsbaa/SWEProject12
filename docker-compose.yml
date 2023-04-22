@@ -7,6 +7,16 @@ services:
       - '2181:2181'
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
+  db:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    expose:
+      - 5432
+    environment:
+      - POSTGRES_USER=fastapi_traefik
+      - POSTGRES_PASSWORD=fastapi_traefik
+      - POSTGRES_DB=fastapi_traefik
 
   kafka:
     image: 'bitnami/kafka'
@@ -27,3 +37,5 @@ services:
     depends_on:
       - kafka
 
+volumes:
+  postgres_data:

@@ -1,18 +1,30 @@
-class Analytics: 
-  def __init__(self,neg, neu, pos, compound):
-      self.neg = neg
-      self.neu = neu
-      self.pos = pos
-      self.compound = compound
+
+import databases
+import ormar
+import sqlalchemy
+
+SQLALCHEMY_DATABASE_URL = "postgresql://fastapi_traefik:fastapi_traefik@db:5432/fastapi_traefik"
+
+database = databases.Database(SQLALCHEMY_DATABASE_URL)
+metadata = sqlalchemy.MetaData()
+
+
+engine = sqlalchemy.create_engine(SQLALCHEMY_DATABASE_URL)
+metadata.create_all(engine)
+
+class Analytics(ormar.ModelMeta): 
+    neg :int = ormar.Integer(primary_key=True)
+    neu :int = ormar.Integer(primary_key=True)
+    pos :int= ormar.Integer(primary_key=True)
+    compound:int = ormar.Integer(primary_key=True)
 
 
   
   
-class Result:
-  def __init__(self,message, analytics):
-    self.DateTime =DateTime
-    self.message = message
-    self.analytics = analytics
+class Result(ormar.ModelMeta):
+  DateTime =DateTime
+  message = message
+  analytics = analytics
     
     
     # https://drive.google.com/file/d/1rvhnZvNokl_rpahXTM_IN2WNq3Qa6boN/view?usp=sharing
