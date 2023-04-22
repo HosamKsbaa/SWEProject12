@@ -12,7 +12,6 @@ consumer = KafkaConsumer(
 )
 
 
-messagesList = []
 
 # Receive messages from the Kafka broker until there are no more messages available.
 while True:
@@ -22,10 +21,12 @@ while True:
             for message in messages:
                 text = message.value
                 if translator.detect(text).lang != "en":
+                    text = text.decode('utf-8')
                     # Translate text to English
                     text = translator.translate(text, dest='en').text
                 with open('englishText2.txt', 'a', encoding='utf-8') as file:
                     # Write translated text to file
+                    print(str(text)+ "\n")
                     file.write(str(text)+ "\n")
 
 
