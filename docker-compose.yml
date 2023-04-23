@@ -1,6 +1,17 @@
 version: '3.8'
 
 services:
+
+  api_manager:
+      image: wso2/wso2am:4.0.0
+      container_name: api_manager
+      ports:
+        - "8280:8280"
+        - "8243:8243"
+        - "9443:9443"
+      volumes:
+        - aa:/home/wso2carbon/wso2am-4.0.0/repository/*
+
   zookeeper:
     image: 'bitnami/zookeeper'
     ports:
@@ -16,10 +27,11 @@ services:
     environment:
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092
+      
 
 
-  app:
+  routerapp:
+    container_name: routerApp
     build:
       context: .
     # command: tail -F anything
@@ -27,10 +39,12 @@ services:
       - '8000:80'
     environment:
       - KAFKA_HOST=kafka:9092
+    links:
+      - "kafka:kafka"
     depends_on:
-            - kafka
-            - zookeeper
-            - db
+      - kafka
+      - zookeeper
+      - db
 
   db:
     image: postgres
@@ -58,3 +72,4 @@ services:
 volumes:
   local_pgdata:
   pgadmin-data:
+  aa:

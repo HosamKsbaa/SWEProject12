@@ -2,7 +2,10 @@ from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 from Util import crud, schemas, models2
 from Util.database import engine, SessionLocal
+from Util.producer import send_message
+from Util.consumer import receive_messages
 
+from Util.serializable import MessagesEncoder
 # Create a FastAPI app instance
 models2.Base.metadata.create_all(bind=engine)
 
