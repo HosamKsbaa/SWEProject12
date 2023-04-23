@@ -31,3 +31,21 @@ This company is bad
 b'<Util.models2.Messages object at 0x7f4fd2e62650>'
 b'<Util.models2.Messages object at 0x7fe20cbc3f10>'
 b'{"MessageId": 63, "DateTime": "2023-04-23 00:00:00", "text": "\\u0647\\u0630\\u0647 \\u0627\\u0644\\u0634\\u0631\\u0643\\u0647 \\u0633\\u064a\\u0626\\u0647 ", "analytics": null}'
+This company is bad
+This company is bad
+This company is bad
+This company is bad
+This company is bad
+This company is bad
+This company is bad
+This company is bad
+This company is bad
+I really Object
+This is good
+This is good
+This is good
+This is good
+This is good
+string
+string
+I love Egypt

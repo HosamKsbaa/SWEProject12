@@ -9,6 +9,5 @@ class MessagesEncoder(json.JSONEncoder):
                 'MessageId': obj.MessageId,
                 'DateTime': obj.DateTime.strftime('%Y-%m-%d %H:%M:%S'),
                 'text': obj.text,
-                'analytics': obj.analytics
             }
         return super().default(obj)

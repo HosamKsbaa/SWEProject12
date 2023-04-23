@@ -25,6 +25,7 @@ from Util.consumer import receive_messages
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+import json
 
 models2.Base.metadata.create_all(bind=engine)
 
@@ -37,6 +38,7 @@ consumer = KafkaConsumer(
 
 Session = sessionmaker(bind=engine)
 session = Session()
+analyzer = SentimentIntensityAnalyzer()
 
 # Receive messages from the Kafka broker until there are no more messages available.
 while True:
@@ -44,13 +46,13 @@ while True:
     if new_messages:
         for _, messages in new_messages.items():
             for message in messages:
-                text = message.value
-                text = text.decode('utf-8')
-                analyzer = SentimentIntensityAnalyzer()
+                message_data = json.loads(message.value)
+                text = message_data['text']
+
 
                 # Analyze text
                 scores = analyzer.polarity_scores(text)
-                crud.create_Analize(db= session,Analytics= models2.Analytics(neg= scores['neg'],neu = scores['neu'] ,pos = scores['pos'] , compound  = scores['compound'] ) );
+                crud.create_Analize(db= session,Analytics= models2.Analytics(MessagesID=message_data['MessageId'],TheTranslatedText=text,neg= scores['neg'],neu = scores['neu'] ,pos = scores['pos'] , compound  = scores['compound'] ) )
                 print(scores)
                 print(text)
                 

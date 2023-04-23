@@ -1,17 +1,7 @@
-import datetime
-import sys
-import os
-from fastapi import FastAPI
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
-from sqlalchemy.orm import Session
-import sqlalchemy
-from Util import crud , database ,schemas , models2
-from Util.database  import engine ,SessionLocal
-from sqlalchemy import create_engine
-
-from Util.producer import send_message
-from Util.consumer import receive_messages
+from Util import crud, schemas, models2
+from Util.database import engine, SessionLocal
 
 # Create a FastAPI app instance
 models2.Base.metadata.create_all(bind=engine)
@@ -61,3 +51,14 @@ async def send_message_route(message: str):
 async def receive_messages_route():
     messages = receive_messages()
     return {'messages': str(messages)}
+
+
+# Endpoint to get all messages and their analytics
+@app.get("/messages")
+def get_messages(db: Session = Depends(get_db)):
+    messages = db.query(models2.Messages).all()
+    message_list = []
+    for message in messages:
+        analytics = db.query(models2.Analytics).filter(models2.Analytics.MessagesID == message.MessageId).first() 
+        message_list.append({"message": message.text,"date": message.DateTime, "analytics": {"neg": analytics.neg, "neu": analytics.neu, "pos": analytics.pos, "compound": analytics.compound,"Translated": analytics.TheTranslatedText}})
+    return message_list
