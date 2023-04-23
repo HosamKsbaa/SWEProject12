@@ -52,6 +52,7 @@ while True:
                 scores = analyzer.polarity_scores(text)
                 crud.create_Analize(db= session,Analytics= models2.Analytics(neg= scores['neg'],neu = scores['neu'] ,pos = scores['pos'] , compound  = scores['compound'] ) );
                 print(scores)
+                print(text)
                 
                 
                 
