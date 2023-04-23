@@ -1,8 +1,10 @@
 from sqlalchemy.orm import Session
 from datetime import date 
+import json
 
 from Util import  models2, schemas ,producer
 from Util.producer import send_message
+from Util.serializable import MessagesEncoder
 
 
 def getAllMessages(db: Session):
@@ -18,7 +20,7 @@ def create_Message(db: Session, Message: schemas.MessageCreate):
     db.add( db_message)
     db.commit()
     db.refresh( db_message)
-    send_message(Message.message)
+    send_message(json.dumps(db_message, cls=MessagesEncoder))
 
     return  db_message
 
