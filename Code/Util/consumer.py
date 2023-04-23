@@ -3,7 +3,7 @@ from kafka import KafkaConsumer
 import os
 
 # Create a Kafka consumer instance
-consumer = KafkaConsumer('my-topic', bootstrap_servers=os.environ.get('KAFKA_HOST'), auto_offset_reset='earliest', value_deserializer=lambda m: m.decode('utf-8'))
+consumer = KafkaConsumer('my-topic', bootstrap_servers='localhost:9092', auto_offset_reset='earliest', value_deserializer=lambda m: m.decode('utf-8'))
 
 def receive_messages():
     # Get messages from the Kafka topic

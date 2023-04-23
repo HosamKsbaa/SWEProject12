@@ -13,7 +13,7 @@
             "request": "launch",
             "module": "uvicorn",
             "args": [
-                "Code.RouterApp:app",
+                "RouterApp:app",
             ],
             "jinja": true,
             "justMyCode": true

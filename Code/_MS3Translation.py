@@ -13,7 +13,7 @@ translator = Translator()
 # Set up Kafka consumer
 consumer = KafkaConsumer(
     'my-topic',
-    bootstrap_servers=[os.environ.get('KAFKA_HOST')],
+    bootstrap_servers=['localhost:9092'],
     # group_id='my-group'
 )
 
