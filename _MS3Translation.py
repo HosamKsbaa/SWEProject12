@@ -2,8 +2,8 @@ from kafka import KafkaConsumer
 import googletrans
 from googletrans import Translator
 
-from producer import send_message
-from consumer import receive_messages
+from Util.producer import send_message
+from Util.consumer import receive_messages
 
 
 
@@ -15,6 +15,7 @@ consumer = KafkaConsumer(
     bootstrap_servers=['localhost:9092'],
     # group_id='my-group'
 )
+
 
 
 

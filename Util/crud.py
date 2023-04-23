@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from datetime import date 
 
-import models2, schemas
+from Util import  models2, schemas
 
 
 def getAllMessages(db: Session):
@@ -39,7 +39,7 @@ def create_Analize(db: Session, Analytics:  models2.Analytics):
 #     return  db_message
 
 
-
+#http://127.0.0.1:8000/docs
 #http://localhost:5050
 #   PGADMIN_DEFAULT_EMAIL: raj@nola.com
 #       PGADMIN_DEFAULT_PASSWORD: admin

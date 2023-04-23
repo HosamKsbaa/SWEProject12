@@ -6,13 +6,12 @@ from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy.orm import Session
 import sqlalchemy
-import crud , database ,schemas
-from database  import engine ,SessionLocal
+from Util import crud , database ,schemas , models2
+from Util.database  import engine ,SessionLocal
 from sqlalchemy import create_engine
-import models2
 
-from producer import send_message
-from consumer import receive_messages
+from Util.producer import send_message
+from Util.consumer import receive_messages
 
 # Create a FastAPI app instance
 models2.Base.metadata.create_all(bind=engine)

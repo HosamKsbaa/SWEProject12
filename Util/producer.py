@@ -1,5 +1,5 @@
 from kafka import KafkaProducer
-from crud import *
+from Util.crud import *
 # Create a Kafka producer instance
 producer = KafkaProducer(bootstrap_servers='localhost:9092', value_serializer=lambda v: str(v).encode('utf-8'))
 

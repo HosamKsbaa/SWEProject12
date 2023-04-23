@@ -1,12 +1,12 @@
-from database  import SessionLocal
+from Util.database  import SessionLocal
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import nltk
 from kafka import KafkaConsumer
 from googletrans import Translator
-from producer import send_message
-from consumer import receive_messages
-import crud 
-import models2
+from Util.producer import send_message
+from Util.consumer import receive_messages
+import Util.crud 
+import Util.models2
 import datetime
 import sys
 import os
@@ -15,13 +15,13 @@ from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy.orm import Session
 import sqlalchemy
-import crud , database ,schemas
-from database  import engine ,SessionLocal
+from Util import crud , database ,schemas ,models2
+from Util.database  import engine ,SessionLocal
 from sqlalchemy import create_engine
-import models2
+import Util.models2
 
-from producer import send_message
-from consumer import receive_messages
+from Util.producer import send_message
+from Util.consumer import receive_messages
 
 models2.Base.metadata.create_all(bind=engine)
 
