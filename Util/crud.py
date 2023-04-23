@@ -1,7 +1,8 @@
 from sqlalchemy.orm import Session
 from datetime import date 
 
-from Util import  models2, schemas
+from Util import  models2, schemas ,producer
+from Util.producer import send_message
 
 
 def getAllMessages(db: Session):
@@ -17,7 +18,7 @@ def create_Message(db: Session, Message: schemas.MessageCreate):
     db.add( db_message)
     db.commit()
     db.refresh( db_message)
-    # send_message(message)
+    send_message(Message.message)
 
     return  db_message
 
@@ -29,6 +30,15 @@ def create_Analize(db: Session, Analytics:  models2.Analytics):
     # send_message(message)
     return  db_Analytics
 
+
+
+def create_Analyze2(db: Session, Analytics: schemas.AnalyticCreate):
+    db_Analytics = models2.Analytics(neg=Analytics.neg , neu= Analytics.neu,pos=Analytics.pos, compound=Analytics.compound)
+    db.add( db_Analytics)
+    db.commit()
+    db.refresh( db_Analytics)
+    # send_message(message)
+    return  db_Analytics
 # def create_Message2(db: Session, Message: schemas.MessageCreate):
 #     db_message = models2.Messages(text=Message.message,DateTime=date.today(),)
 #     db.add( db_message)

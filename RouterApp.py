@@ -30,6 +30,10 @@ def get_db():
 def send_message_route2( message: schemas.MessageCreate ,db: Session = Depends(get_db)):
 	return crud.create_Message(db=db, Message=message)
 
+@app.post('/StoreAnalytics/')
+def StoreAnalytics( Analytics: schemas.AnalyticCreate ,db: Session = Depends(get_db)):
+	return crud.create_Analyze2(db=db, Analytics=Analytics)
+
 
 
 @app.get('/getLastMessage')

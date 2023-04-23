@@ -8,12 +8,24 @@
 
         {
    
-            "name": "Python: FastAPI",
+            "name": "RouterApp",
             "type": "python",
             "request": "launch",
             "module": "uvicorn",
             "args": [
                 "RouterApp:app",
+            ],
+            "jinja": true,
+            "justMyCode": true
+        },
+        {
+   
+            "name": "_MS4Analysis",
+            "type": "python",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "MS4Analysis:app",
             ],
             "jinja": true,
             "justMyCode": true
