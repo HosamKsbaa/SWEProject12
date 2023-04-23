@@ -1,6 +1,3 @@
- 
-Integrator: https://localhost:9443/carbon
-Analytics Dashboard: https://localhost:9643/portal
 
 
 

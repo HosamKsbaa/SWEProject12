@@ -32,7 +32,7 @@ models2.Base.metadata.create_all(bind=engine)
 # Set up Kafka consumer
 consumer = KafkaConsumer(
     'translated',
-    bootstrap_servers=['kafka:9092'],
+    bootstrap_servers=[os.environ.get('KAFKA_HOST')],
     # group_id='my-group'
 )
 

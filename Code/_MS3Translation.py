@@ -5,7 +5,7 @@ from googletrans import Translator
 from Util.producer import send_message
 from Util.consumer import receive_messages
 import json
-
+import os
 
 
 translator = Translator()
@@ -13,7 +13,7 @@ translator = Translator()
 # Set up Kafka consumer
 consumer = KafkaConsumer(
     'my-topic',
-    bootstrap_servers=['kafka:9092'],
+    bootstrap_servers=[os.environ.get('KAFKA_HOST')],
     # group_id='my-group'
 )
 
